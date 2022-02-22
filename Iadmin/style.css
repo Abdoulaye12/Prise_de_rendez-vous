@@ -266,6 +266,14 @@ nav .profile-details .admin_name{
   border-radius: 12px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
+.rv .rvs .rvsx{
+  width: 100%;
+  background: #fff;
+  padding: 20px 30px;
+  margin: 0 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
 .home-content .sales-boxes .sales-details{
   display: flex;
   align-items: center;
