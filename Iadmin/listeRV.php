@@ -81,17 +81,16 @@
               <li class="topic">Service</li>
             </ul>
             <ul class="details">
-              <li class="topic">Date RDV</li>
+              <li class="topic">Date et Heure RDV</li>
             </ul>
             <ul class="details">
-              <li class="topic">Heure RDV</li>
+              <li class="topic">Email</li>
             </ul>
           </div>
         </div>
       </div>
     </div>
   </section>
-
   <script>
     let sidebar = document.querySelector(".sidebar");
     let sidebarBtn = document.querySelector(".sidebarBtn");
