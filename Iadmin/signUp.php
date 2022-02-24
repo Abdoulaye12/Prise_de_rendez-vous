@@ -69,19 +69,10 @@
       color: white;
       font-size: 12px;
     }
-    
-    .login-box form a {
-      position: relative;
-      display: inline-block;
-      padding: 10px 20px;
-      color: white;
-      font-size: 16px;
-      text-decoration: none;
-      text-transform: uppercase;
-      overflow: hidden;
-      transition: .5s;
-      margin-top: 40px;
-      letter-spacing: 4px
+    a
+    {
+        color:white;
+        text-decoration:none;
     }
     
     .login-box a span {
@@ -134,7 +125,7 @@
       </div>
       <div class="boutons">
           <button class="btn" type="submit">Valider</button>
-          <button class="btn1" type="reset">Retour</button>
+         <button class="btn1" type="reset"><a href="index.html">Retour</a></button>
       </div>
     </form>
   </div>
