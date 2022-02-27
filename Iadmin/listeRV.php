@@ -1,22 +1,27 @@
+<?php session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <title>Document</title>
 </head>
+
 <body>
-<div class="sidebar">
+  <div class="sidebar">
     <div class="logo-details">
       <i class='bx bxl-c-plus-plus'></i>
       <span class="logo_name">Rendez-vous</span>
     </div>
     <ul class="nav-links">
       <li>
-        <a href="dashboard.php" >
+        <a href="index.php">
           <i class='bx bx-grid-alt'></i>
           <span class="links_name">Dashboard</span>
         </a>
@@ -46,7 +51,7 @@
         </a>
       </li>
       <li class="log_out">
-        <a href="#">
+        <a href="logout.php">
           <i class='bx bx-log-out'></i>
           <span class="links_name">Log out</span>
         </a>
@@ -62,6 +67,7 @@
       <div class="profile-details">
         <img src="images/profile.jpg" alt="">
         <span class="admin_name">Amadou</span>
+        <span><a href="logout.php">Déconnexion</a></span>
       </div>
     </nav>
     <div class="home-content rv">
@@ -72,10 +78,10 @@
               <li class="topic">Numéro</li>
             </ul>
             <ul class="details">
-              <li class="topic">Nom</li>
+              <li class="topic">Prénom</li>
             </ul>
             <ul class="details">
-              <li class="topic">Prénom</li>
+              <li class="topic">Nom</li>
             </ul>
             <ul class="details">
               <li class="topic">Service</li>
@@ -94,7 +100,7 @@
   <script>
     let sidebar = document.querySelector(".sidebar");
     let sidebarBtn = document.querySelector(".sidebarBtn");
-    sidebarBtn.onclick = function () {
+    sidebarBtn.onclick = function() {
       sidebar.classList.toggle("active");
       if (sidebar.classList.contains("active")) {
         sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
@@ -103,4 +109,5 @@
     }
   </script>
 </body>
+
 </html>
