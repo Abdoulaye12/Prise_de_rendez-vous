@@ -1,23 +1,36 @@
 <?php
 session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=rendez-vous;charset=utf8', 'root', '');
+$nom = "";
+$prenom = "";
+$e_mail = "";
+$adresse = "";
+$telephone = "";
+$services = "";
+$date_rv = "";
+$heure_rv = "";
 if (isset($_POST['submit'])) {
-  if (isset($_POST['submit'])) {
-    $nom = htmlspecialchars($_POST['nom']);
-    $prenom = htmlspecialchars($_POST['prenom']);
-    $e_mail = htmlspecialchars($_POST['e_mail']);
-    $adresse = htmlspecialchars($_POST['adresse']);
-    $telephone  = htmlspecialchars($_POST['telephone']);
-    $services = htmlspecialchars($_POST['services']);
-    $date_rv = htmlspecialchars($_POST['date_rv']);
-    $heure_rv = htmlspecialchars($_POST['heure_rv']);
-
-    $ins = $bdd->prepare('INSERT INTO rendez_vous (nom, prenom, e_mail, adresse, telephone, services, date_rv, heure_rv) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
-    $ins->execute(array($nom, $prenom, $e_mail, $adresse, $telephone, $services, $date_rv, $heure_rv));
-    echo 'Votre rendez-vous a été bien pris en compte';
-  } else {
-    echo 'Veuillez remplir tous les champs !';
-  }
+    if (isset($_POST['submit'])) {
+        $nom = htmlspecialchars($_POST['nom']);
+        $prenom = htmlspecialchars($_POST['prenom']);
+        $e_mail = htmlspecialchars($_POST['e_mail']);
+        $adresse = htmlspecialchars($_POST['adresse']);
+        $telephone  = htmlspecialchars($_POST['telephone']);
+        $services = htmlspecialchars($_POST['services']);
+        $date_rv = htmlspecialchars($_POST['date_rv']);
+        $heure_rv = htmlspecialchars($_POST['heure_rv']);
+        if ($date_rv < date("Y-m-d")) {
+            echo "La date est dans le passé";
+        } elseif (intval(date_format(date_create($heure_rv), "H")) > 20 || intval(date_format(date_create($heure_rv), "H" < 8))) {
+            echo "Time is not available";
+        } else {
+            $ins = $bdd->prepare('INSERT INTO rendez_vous (nom, prenom, e_mail, adresse, telephone, services, date_rv, heure_rv) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
+            $ins->execute(array($nom, $prenom, $e_mail, $adresse, $telephone, $services, $date_rv, $heure_rv));
+            echo 'Votre rendez-vous a été bien pris en compte';
+        }
+    } else {
+        echo 'Veuillez remplir tous les champs !';
+    }
 }
 ?>
 
@@ -131,7 +144,8 @@ if (isset($_POST['submit'])) {
         .edit {
             margin-left: 30%;
         }
-        span{
+
+        span {
             color: red;
         }
     </style>
@@ -168,46 +182,46 @@ if (isset($_POST['submit'])) {
                             <form method="POST" action="">
                                 <div class="mb-3">
                                     <label>Nom <span>*</span></label>
-                                    <input required name="nom" class="form-control" type="text" placeholder="Nom">
+                                    <input required name="nom" class="form-control" value="<?php echo $nom; ?>" type="text" placeholder="Nom">
                                 </div>
                                 <div class="mb-3">
                                     <label>Prenom <span>*</span></label>
-                                    <input required name="prenom" class="form-control" type="text" placeholder="Prenom">
+                                    <input required name="prenom" class="form-control" value="<?php echo $prenom; ?>" type="text" placeholder="Prenom">
                                 </div>
                                 <div class="mb-3">
                                     <label>Email</label>
-                                    <input name="e_mail" class="form-control" type="email" placeholder="name@exemple.com">
+                                    <input name="e_mail" class="form-control" type="email" value="<?php echo $e_mail; ?>" placeholder="name@exemple.com">
                                 </div>
                                 <div class="mb-3">
                                     <label>Adresse</label>
-                                    <input type="text" class="form-control" name="adresse" placeholder="Adresse">
+                                    <input type="text" class="form-control" name="adresse" value="<?php echo $adresse; ?>" placeholder="Adresse">
                                 </div>
                                 <div class="mb-3">
                                     <label>Numero de téléphone <span>*</span></label>
-                                    <input required type="text" class="form-control" name="telephone" placeholder="+221-77-000-00-00">
+                                    <input required type="text" class="form-control" value="<?php echo $telephone; ?>" name="telephone" placeholder="+221-77-000-00-00">
                                 </div>
                                 <div class="mb-3">
                                     <label>Services <span>*</span></label>
                                     <select required name="services" class="form-select" aria-label="Disabled select example">
-                                        <option selected value="" disabled>-- Aucun --</option>
-                                        <option value="Généraliste" name="Generaliste">Généraliste</option>
-                                        <option value="Ophtalmologie" name="Ophtalmologie">Ophtalmologie</option>
-                                        <option value="Dentiste" name="Dentiste">Dentiste</option>
-                                        <option value="Radiologie" name="Radiologie">Radiologie</option>
+                                        <option value="">-- Aucun --</option>
+                                        <option value="Généraliste" <?php echo $services == "Généraliste" ? "selected" : ''; ?>>Généraliste</option>
+                                        <option value="Ophtalmologie" <?php echo $services == "Ophtalmologie" ? "selected" : ''; ?>>Ophtalmologie</option>
+                                        <option value="Dentiste" <?php echo $services == "Dentiste" ? "selected" : ''; ?>>Dentiste</option>
+                                        <option value="Radiologie" <?php echo $services == "Radiologie" ? "selected" : ''; ?>>Radiologie</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">
                                     <label>Date du rendez vous <span>*</span></label>
-                                    <input required type="date" class="form-control" name="date_rv">
+                                    <input required type="date" class="form-control" value="<?php echo $date_rv; ?>" name="date_rv">
                                 </div>
                                 <div class="mb-3">
                                     <label>Heure du rendez vous <span>*</span></label>
-                                    <input required type="time" class="form-control" name="heure_rv">
+                                    <input required type="time" class="form-control" value="<?php echo $heure_rv; ?>" name="heure_rv">
                                 </div>
                                 <hr class="hrBas mt-3 mb-4">
                                 <div class="col-md-7 edit">
                                     <button class="btn btn-outline-secondary" type="submit" name="submit">Valider</button>
-                                    <button class="btn btn-danger" type="reset" name="annuler">Annuler</button>
+                                    <button class="btn btn-danger" type="" name="annuler">Annuler</button>
                                 </div>
                             </form>
                         </div>
