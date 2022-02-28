@@ -151,7 +151,7 @@
       </div>
       <div class="boutons">
         <button class="btn" name="submit" type="submit">Valider</button>
-        <button class="btn1" type="reset"><a href="login.php">Retour</a></button>
+        <button class="btn1" type="reset">Retour</button>
       </div>
       <hr style="margin-top:15px;margin-bottom: 15px;">
       <a class="newcompte" href="login.php">Se connecter</a>

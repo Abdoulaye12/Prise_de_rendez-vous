@@ -20,7 +20,8 @@ if (isset($_POST['submit'])) {
 	$requete->bindValue(':mot_de_passe', $mot_de_passe, PDO::PARAM_STR);
 	$requete->execute();
 
-	echo'votre compte a été bien créée';
+	echo'<h3 style ="text-align:center;color:white;margin:10px;">votre compte a été bien créée</h3>';
+
 	require("signUp.php");
 
 } else {

@@ -135,7 +135,7 @@
         <button type="submit" name="submit" class="btn1"> Se Connecter</button>
       </div>
       <hr style="margin-top:20px;margin-bottom: 15px;">
-      <a class="newcompte" href="signUp.php">Créer un compte</a>
+      <a class="newcompte" href="signUp2.php">Créer un compte</a>
     </form>
   </div>
 </body>
