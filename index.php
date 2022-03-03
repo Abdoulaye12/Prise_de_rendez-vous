@@ -1,5 +1,4 @@
 <?php
-session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=rendez-vous;charset=utf8', 'root', '');
 $nom = "";
 $prenom = "";
@@ -179,7 +178,7 @@ if (isset($_POST['submit'])) {
                     <div class="card mb-4">
                         <div class="card-header">Veuillez remplir ces champs</div>
                         <div class="card-body">
-                            <form method="POST" action="">
+                            <form method="POST" action="recap.php">
                                 <div class="mb-3">
                                     <label>Nom <span>*</span></label>
                                     <input required name="nom" class="form-control" value="<?php echo $nom; ?>" type="text" placeholder="Nom">

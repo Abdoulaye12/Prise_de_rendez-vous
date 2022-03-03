@@ -3,6 +3,10 @@
 if (isset($_SESSION['valid'])) {
   include("connexion.php");
   $result = mysqli_query($mysqli, "SELECT * FROM user");
+  $bdd = new PDO('mysql:host=localhost;dbname=rendez-vous;charset=utf8', 'root', '');
+  $requete = $bdd->query('SELECT COUNT(id_rv) as countid FROM rendez_vous');
+  $nbligne = $requete->fetch();
+  // echo 'Il y a ' . $nbligne['countid'] . ' entrée dans la table.';
 ?>
   <!DOCTYPE html>
   <html lang="en">
@@ -19,8 +23,7 @@ if (isset($_SESSION['valid'])) {
 
     <div class="sidebar">
       <div class="logo-details">
-        <i class='bx bxl-c-plus-plus'></i>
-        <span class="logo_name">Rendez-vous</span>
+        <span style="margin-left: 25px;" class="logo_name">Rendez-vous</span>
       </div>
       <ul class="nav-links">
         <li>
@@ -56,7 +59,7 @@ if (isset($_SESSION['valid'])) {
         <li class="log_out">
           <a href="logout.php">
             <i class='bx bx-log-out'></i>
-            <span class="links_name">Log out</span>
+            <span class="links_name">Déconnexion</span>
           </a>
         </li>
       </ul>
@@ -68,9 +71,7 @@ if (isset($_SESSION['valid'])) {
           <span class="dashboard">Dashboard</span>
         </div>
         <div class="profile-details">
-          <img src="images/profile.jpg" alt="">
           <span class="admin_name">Amadou</span>
-          <span><a href="logout.php">Déconnexion</a></span>
         </div>
       </nav>
 
@@ -78,14 +79,14 @@ if (isset($_SESSION['valid'])) {
         <div class="overview-boxes">
           <div class="box">
             <div class="right-side">
-              <div class="box-topic">Total Order</div>
-              <div class="number">40,876</div>
+              <div class="box-topic">Total</div>
+              <div class="number"><?php echo $nbligne['countid']; ?></div>
               <div class="indicator">
                 <i class='bx bx-up-arrow-alt'></i>
                 <span class="text">Up from yesterday</span>
               </div>
             </div>
-            <i class='bx bx-cart-alt cart'></i>
+            <i class='bx bx-alt '></i>
           </div>
           <div class="box">
             <div class="right-side">

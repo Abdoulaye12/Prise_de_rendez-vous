@@ -4,6 +4,7 @@ if (isset($_SESSION['valid'])) {
 
   $bdd = new PDO('mysql:host=localhost;dbname=rendez-vous;charset=utf8', 'root', '');
   $rv = $bdd->query('SELECT * FROM rendez_vous/* ORDER BY id_rv DESC*/');
+
 ?>
 
   <!DOCTYPE html>
@@ -30,8 +31,7 @@ if (isset($_SESSION['valid'])) {
 
     <div class="sidebar">
       <div class="logo-details">
-        <i class='bx bxl-c-plus-plus'></i>
-        <span class="logo_name">Rendez-vous</span>
+        <span style="margin-left: 25px;" class="logo_name">Rendez-vous</span>
       </div>
       <ul class="nav-links">
         <li>
@@ -67,7 +67,7 @@ if (isset($_SESSION['valid'])) {
         <li class="log_out">
           <a href="logout.php">
             <i class='bx bx-log-out'></i>
-            <span class="links_name">Log out</span>
+            <span class="links_name">Déconnexion</span>
           </a>
         </li>
       </ul>
@@ -79,9 +79,8 @@ if (isset($_SESSION['valid'])) {
           <span class="dashboard">Liste Rendez-vous</span>
         </div>
         <div class="profile-details">
-          <img src="images/profile.jpg" alt="">
-          <span class="admin_name">Amadou</span>
-          <span><a href="logout.php">Déconnexion</a></span>
+          <!-- prendre l'initial du nom -->
+          <span class="admin_name"><?php echo $_SESSION['prenom']; ?></span>
         </div>
       </nav>
       <div class="home-content rv">
@@ -93,6 +92,7 @@ if (isset($_SESSION['valid'])) {
                   <th>Numéro</th>
                   <th>Prénom</th>
                   <th>Nom</th>
+                  <th>Téléphone</th>
                   <th>Services</th>
                   <th>Date RV</th>
                   <th>Heure RV</th>
@@ -104,6 +104,7 @@ if (isset($_SESSION['valid'])) {
                     <td><?= $a['id_rv'] ?></td>
                     <td><?= $a['prenom'] ?></td>
                     <td><?= $a['nom'] ?></td>
+                    <td><?= $a['telephone'] ?></td>
                     <td><?= $a['services'] ?></td>
                     <td><?= $a['date_rv'] ?></td>
                     <td><?= $a['heure_rv'] ?></td>
