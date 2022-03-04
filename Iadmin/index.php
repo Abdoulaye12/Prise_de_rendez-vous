@@ -7,13 +7,21 @@ if (isset($_SESSION['valid'])) {
   $requete = $bdd->query('SELECT COUNT(id_rv) as countid FROM rendez_vous');
   $nbligne = $requete->fetch();
   // echo 'Il y a ' . $nbligne['countid'] . ' entrée dans la table.';
+
+  // $requete2 = $bdd->query('SELECT COUNT(id_rv) as countid FROM rendez_vous WHERE DAY(date_rv) = DAY(NOW()) AND MONTH(date_rv) = MONTH(NOW()) AND YEAR(date_rv) = YEAR(NOW()) ');
+  // $nbligne2 = $requete2->fetch();
+
+  $requete2 = $bdd->query('SELECT COUNT(id_rv) as countid FROM rendez_vous WHERE DATE_ADD(date_rv, INTERVAL 1 DAY) < NOW()');
+  $nbligne2 = $requete2->fetch();
+  var_dump($nbligne2);
+
 ?>
   <!DOCTYPE html>
   <html lang="en">
 
   <head>
     <meta charset="UTF-8">
-    <title> Responsive Admin Dashboard | CodingLab </title>
+    <title>Admin Dashboard</title>
     <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,18 +46,6 @@ if (isset($_SESSION['valid'])) {
             <span class="links_name">Liste Rendez-vous</span>
           </a>
         </li>
-        <!-- <li>
-          <a href="#">
-            <i class='bx bx-pie-chart-alt-2' ></i>
-            <span class="links_name">Analytics</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class='bx bx-book-alt' ></i>
-            <span class="links_name">Total order</span>
-          </a>
-        </li> -->
         <li>
           <a href="#">
             <i class='bx bx-cog'></i>
@@ -82,44 +78,44 @@ if (isset($_SESSION['valid'])) {
               <div class="box-topic">Total</div>
               <div class="number"><?php echo $nbligne['countid']; ?></div>
               <div class="indicator">
-                <i class='bx bx-up-arrow-alt'></i>
-                <span class="text">Up from yesterday</span>
+                <!-- <i class='bx bx-up-arrow-alt'></i> -->
+                <span class="text">Rendez_vous</span>
               </div>
             </div>
-            <i class='bx bx-alt '></i>
+            <!-- <i class='bx bx-alt '></i> -->
           </div>
           <div class="box">
             <div class="right-side">
-              <div class="box-topic">Total Sales</div>
-              <div class="number">38,876</div>
+              <div class="box-topic">Aujourd'hui</div>
+              <div class="number"><?php echo $nbligne2['countid']; ?></div>
               <div class="indicator">
-                <i class='bx bx-up-arrow-alt'></i>
-                <span class="text">Up from yesterday</span>
+                <!-- <i class='bx bx-up-arrow-alt'></i> -->
+                <span class="text">Rendez-vous</span>
               </div>
             </div>
-            <i class='bx bxs-cart-add cart two'></i>
+            <!-- <i class='bx bxs-cart-add cart two'></i> -->
           </div>
           <div class="box">
             <div class="right-side">
-              <div class="box-topic">Total Profit</div>
+              <div class="box-topic">Dans 3 jours</div>
               <div class="number">$12,876</div>
               <div class="indicator">
-                <i class='bx bx-up-arrow-alt'></i>
-                <span class="text">Up from yesterday</span>
+                <!-- <i class='bx bx-up-arrow-alt'></i> -->
+                <span class="text">Rendez-vous</span>
               </div>
             </div>
-            <i class='bx bx-cart cart three'></i>
+            <!-- <i class='bx bx-cart cart three'></i> -->
           </div>
           <div class="box">
             <div class="right-side">
-              <div class="box-topic">Total Return</div>
+              <div class="box-topic">Dans 1 semaine</div>
               <div class="number">11,086</div>
               <div class="indicator">
-                <i class='bx bx-down-arrow-alt down'></i>
-                <span class="text">Down From Today</span>
+                <!-- <i class='bx bx-down-arrow-alt down'></i> -->
+                <span class="text">Rendez-vous</span>
               </div>
             </div>
-            <i class='bx bxs-cart-download cart four'></i>
+            <!-- <i class='bx bxs-cart-download cart four'></i> -->
           </div>
         </div>
 
