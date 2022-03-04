@@ -53,7 +53,6 @@ if (isset($_SESSION['valid'])) {
 ?>
   <!DOCTYPE html>
   <html lang="en">
-
   <head>
     <meta charset="UTF-8">
     <title>Admin Dashboard</title>
@@ -120,9 +119,10 @@ if (isset($_SESSION['valid'])) {
               <div class="box-topic">Total rendez-vous</div>
               <div class="number"><?php echo $nbligne['countid']; ?></div>
               <div class="indicator">
-                <span class="text">Rendez_vous</span>
+
               </div>
             </div>
+            <i class='bx bx-alt '></i>
           </div>
           <div class="box">
             <div class="right-side">
@@ -135,7 +135,7 @@ if (isset($_SESSION['valid'])) {
           </div>
           <div class="box">
             <div class="right-side">
-              <div class="box-topic">Dans 3 jours</div>
+              <div class="box-topic">3 prochain jours</div>
               <div class="number"><?php echo $b; ?></div>
               <div class="indicator">
                 <span class="text">Rendez-vous</span>
@@ -144,7 +144,7 @@ if (isset($_SESSION['valid'])) {
           </div>
           <div class="box">
             <div class="right-side">
-              <div class="box-topic">Dans 1 semaine</div>
+              <div class="box-topic">7 prochain jours</div>
               <div class="number"><?php echo $c; ?></div>
               <div class="indicator">
                 <span class="text">Rendez-vous</span>
@@ -154,10 +154,10 @@ if (isset($_SESSION['valid'])) {
         </div>
         <div class="sales-boxes">
           <div class="recent-sales box">
-            <canvas id="myChart" width="400" height="250"></canvas>
-            <script>
-              const ctx = document.getElementById('myChart').getContext('2d');
-              const myChart = new Chart(ctx, {
+          <canvas id="myChart" width="600" height="350"></canvas>
+          <script>
+            const ctx = document.getElementById('myChart').getContext('2d');
+            const myChart = new Chart(ctx, {
                 type: 'line',
                 data: {
                   labels: ['janvier', 'février', 'Mars', 'Avril', 'Mais', 'Juin'],
