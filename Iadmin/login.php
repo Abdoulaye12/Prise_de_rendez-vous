@@ -6,7 +6,7 @@ if (isset($_POST['submit'])) {
 	$mot_de_passe = mysqli_real_escape_string($mysqli, $_POST['mot_de_passe']);
 
 	if ($e_mail == "" || $mot_de_passe == "") {
-		echo "Entrer un nom d'utilisateur et un mot de passe";
+		echo '<h3 style ="text-align:center;color:white;margin:10px;">Entrer un nom d\'utilisateur et un mot de passe</h3>';
 		echo "<br/>";
 		echo "<a href='login.php'>Retour</a>";
 	} else {
@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
 			$_SESSION['e_mail'] = $row['e_mail'];
 			$_SESSION['id'] = $row['id'];
 		} else {
-			echo 'Email ou mot de passe incorrect';
+			echo '<h3 style ="text-align:center;color:white;margin:10px;">Email ou mot de passe incorrect</h3>';
 			include("login2.php");
 		}
 		if (isset($_SESSION['valid'])) {
