@@ -1,3 +1,14 @@
+<?php
+$bdd = new PDO('mysql:host=localhost;dbname=rendez-vous;charset=utf8', 'root', '');
+$nom = "";
+$prenom = "";
+$e_mail = "";
+$adresse = "";
+$telephone = "";
+$services = "";
+$date_rv = "";
+$heure_rv = "";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -119,7 +130,7 @@
     <header class="header_section">
         <div class="container">
             <nav class="navbar navbar-expand-lg custom_nav-container ">
-                <p style="color: white;margin:5px">Prise de Rendez-vous</p>
+                <a href="index.php"><p style="color: white;margin:5px">Prise de Rendez-vous</p></a>
                 <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class=""> </span>
                   </button>

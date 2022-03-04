@@ -119,7 +119,7 @@ if (isset($_SESSION['valid'])) {
               <div class="box-topic">Total rendez-vous</div>
               <div class="number"><?php echo $nbligne['countid']; ?></div>
               <div class="indicator">
-
+              <span class="text">Rendez-vous</span>
               </div>
             </div>
             <i class='bx bx-alt '></i>
