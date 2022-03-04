@@ -4,15 +4,58 @@ if (isset($_SESSION['valid'])) {
   include("connexion.php");
   $result = mysqli_query($mysqli, "SELECT * FROM user");
   $bdd = new PDO('mysql:host=localhost;dbname=rendez-vous;charset=utf8', 'root', '');
+
+  /* pour total */
+
   $requete = $bdd->query('SELECT COUNT(id_rv) as countid FROM rendez_vous');
   $nbligne = $requete->fetch();
-  // echo 'Il y a ' . $nbligne['countid'] . ' entrée dans la table.';
+
+  /* pour aujourd'hui */
+
+  $requete0 = $bdd->query('SELECT COUNT(id_rv) as countid FROM rendez_vous WHERE DAY(date_rv) = DAY(NOW()) AND MONTH(date_rv) = MONTH(NOW()) AND YEAR(date_rv) = YEAR(NOW()) ');
+  $nbligne0 = $requete0->fetch();
+  $a0 = $nbligne0['countid'];
+
+  /* pour 3 jours  */
+
+  $requete1 = $bdd->query('SELECT COUNT(date_rv) as countid FROM rendez_vous WHERE date_rv = DATE_ADD(CAST(NOW() AS DATE), INTERVAL 1 DAY)');
+  $nbligne1 = $requete1->fetch();
+  $a1 = $nbligne1['countid'];
+
+  $requete2 = $bdd->query('SELECT COUNT(date_rv) as countid FROM rendez_vous WHERE date_rv = DATE_ADD(CAST(NOW() AS DATE), INTERVAL 2 DAY)');
+  $nbligne2 = $requete2->fetch();
+  $a2 = $nbligne2['countid'];
+
+  $requete3 = $bdd->query('SELECT COUNT(date_rv) as countid FROM rendez_vous WHERE date_rv = DATE_ADD(CAST(NOW() AS DATE), INTERVAL 3 DAY)');
+  $nbligne3 = $requete3->fetch();
+  $a3 = $nbligne3['countid'];
+
+  $b = $a1 + $a2 + $a3;  /* pour 1 semaine */
+
+  $requete4 = $bdd->query('SELECT COUNT(date_rv) as countid FROM rendez_vous WHERE date_rv = DATE_ADD(CAST(NOW() AS DATE), INTERVAL 4 DAY)');
+  $nbligne4 = $requete4->fetch();
+  $a4 = $nbligne4['countid'];
+
+  $requete5 = $bdd->query('SELECT COUNT(date_rv) as countid FROM rendez_vous WHERE date_rv = DATE_ADD(CAST(NOW() AS DATE), INTERVAL 5 DAY)');
+  $nbligne5 = $requete5->fetch();
+  $a5 = $nbligne5['countid'];
+
+  $requete6 = $bdd->query('SELECT COUNT(date_rv) as countid FROM rendez_vous WHERE date_rv = DATE_ADD(CAST(NOW() AS DATE), INTERVAL 6 DAY)');
+  $nbligne6 = $requete6->fetch();
+  $a6 = $nbligne6['countid'];
+
+  $requete7 = $bdd->query('SELECT COUNT(date_rv) as countid FROM rendez_vous WHERE date_rv = DATE_ADD(CAST(NOW() AS DATE), INTERVAL 7 DAY)');
+  $nbligne7 = $requete7->fetch();
+  $a7 = $nbligne7['countid'];
+
+  $c = $b + $a4 + $a5 + $a6 + $a7;
+
 ?>
   <!DOCTYPE html>
   <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title> Responsive Admin Dashboard | CodingLab </title>
+    <title>Admin Dashboard</title>
     <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
@@ -38,18 +81,6 @@ if (isset($_SESSION['valid'])) {
             <span class="links_name">Liste Rendez-vous</span>
           </a>
         </li>
-        <!-- <li>
-          <a href="#">
-            <i class='bx bx-pie-chart-alt-2' ></i>
-            <span class="links_name">Analytics</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class='bx bx-book-alt' ></i>
-            <span class="links_name">Total order</span>
-          </a>
-        </li> -->
         <li>
           <a href="#">
             <i class='bx bx-cog'></i>
@@ -71,7 +102,9 @@ if (isset($_SESSION['valid'])) {
           <span class="dashboard">Dashboard</span>
         </div>
         <div class="profile-details">
-          <span class="admin_name">Amadou</span>
+          <!-- c'est pas encore dynamique -->
+          <span style="border: 1px solid black;padding:8px;border-radius:50px">AG</span>
+          <span class="admin_name"><?php echo $_SESSION['prenom']; ?></span>
         </div>
       </nav>
 
@@ -82,37 +115,38 @@ if (isset($_SESSION['valid'])) {
               <div class="box-topic">Total rendez-vous</div>
               <div class="number"><?php echo $nbligne['countid']; ?></div>
               <div class="indicator">
+
               </div>
             </div>
             <i class='bx bx-alt '></i>
           </div>
           <div class="box">
             <div class="right-side">
-              <div class="box-topic">Total du jour</div>
-              <div class="number"></div>
+              <div class="box-topic">Aujourd'hui</div>
+              <div class="number"><?php echo $a0; ?></div>
               <div class="indicator">
+                <span class="text">Rendez-vous</span>
               </div>
             </div>
           </div>
           <div class="box">
             <div class="right-side">
-              <div class="box-topic">Total Mensuel</div>
-              <div class="number"></div>
+              <div class="box-topic">3 prochain jours</div>
+              <div class="number"><?php echo $b; ?></div>
               <div class="indicator">
+                <span class="text">Rendez-vous</span>
               </div>
             </div>
           </div>
-          <!-- <div class="box">
+          <div class="box">
             <div class="right-side">
-              <div class="box-topic">Total </div>
-              <div class="number">11,086</div>
+              <div class="box-topic">7 prochain jours</div>
+              <div class="number"><?php echo $c; ?></div>
               <div class="indicator">
-                <i class='bx bx-down-arrow-alt down'></i>
-                <span class="text">Down From Today</span>
+                <span class="text">Rendez-vous</span>
               </div>
             </div>
-            <i class='bx bxs-cart-download cart four'></i>
-          </div> -->
+          </div>
         </div>
         <div class="sales-boxes">
           <div class="recent-sales box">
@@ -122,42 +156,42 @@ if (isset($_SESSION['valid'])) {
             const myChart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: ['janvier', 'février', 'Mars', 'Avril', 'Mais', 'Juin'],
-                    datasets: [{
-                        data: [55, 70, 65, 50, 25, 45],
-                      
-                    }]
+                  labels: ['janvier', 'février', 'Mars', 'Avril', 'Mais', 'Juin'],
+                  datasets: [{
+                    data: [55, 70, 65, 50, 25, 45],
+
+                  }]
                 },
                 options: {
-                   
+
                 }
-            });
-          </script>
+              });
+            </script>
           </div>
           <div class="top-sales box">
-          <canvas id="myChart1" width="150" height="200"></canvas>
-          <script>
-            var barColors = [
-              "#3e5580",
-              "rgba(0,0,255,0.8)",
-              "#0A2558",
-              "rgba(0,0,255,0.4)",
-            ];
-            const ctx1 = document.getElementById('myChart1').getContext('2d');
-            const myChart1 = new Chart(ctx1, {
+            <canvas id="myChart1" width="150" height="200"></canvas>
+            <script>
+              var barColors = [
+                "#3e5580",
+                "rgba(0,0,255,0.8)",
+                "#0A2558",
+                "rgba(0,0,255,0.4)",
+              ];
+              const ctx1 = document.getElementById('myChart1').getContext('2d');
+              const myChart1 = new Chart(ctx1, {
                 type: 'pie',
                 data: {
-                    labels: ['janvier', 'février', 'Mars', 'Avril'],
-                    datasets: [{
-                       backgroundColor: barColors,
-                        data: [55, 70, 65, 50],
-                    }]
+                  labels: ['janvier', 'février', 'Mars', 'Avril'],
+                  datasets: [{
+                    backgroundColor: barColors,
+                    data: [55, 70, 65, 50],
+                  }]
                 },
                 options: {
-                   
+
                 }
-            });
-          </script>
+              });
+            </script>
           </div>
         </div>
       </div>
@@ -174,6 +208,7 @@ if (isset($_SESSION['valid'])) {
       }
     </script>
   </body>
+
   </html>
 
 <?php
