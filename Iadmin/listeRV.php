@@ -80,6 +80,11 @@ if (isset($_SESSION['valid'])) {
         </div>
         <div class="profile-details">
           <!-- prendre l'initial du nom -->
+          <span style="border: 1px solid black;padding:8px;border-radius:50px">
+            <?php $rest = strtoupper(substr($_SESSION['prenom'], 0));
+            $rest1 = strtoupper(substr($_SESSION['nom'], 0));
+            echo $rest[0] . $rest1[0]; ?>
+          </span>
           <span class="admin_name"><?php echo $_SESSION['prenom']; ?></span>
         </div>
       </nav>

@@ -104,7 +104,11 @@ if (isset($_SESSION['valid'])) {
         </div>
         <div class="profile-details">
           <!-- c'est pas encore dynamique -->
-          <span style="border: 1px solid black;padding:8px;border-radius:50px">AG</span>
+          <span style="border: 1px solid black;padding:8px;border-radius:50px">
+            <?php $rest = strtoupper(substr($_SESSION['prenom'], 0));
+            $rest1 = strtoupper(substr($_SESSION['nom'], 0));
+            echo $rest[0] . $rest1[0]; ?>
+          </span>
           <span class="admin_name"><?php echo $_SESSION['prenom']; ?></span>
         </div>
       </nav>
@@ -116,7 +120,7 @@ if (isset($_SESSION['valid'])) {
               <div class="box-topic">Total rendez-vous</div>
               <div class="number"><?php echo $nbligne['countid']; ?></div>
               <div class="indicator">
-                <span class="text">Rendez_vous</span>
+                <span class="text">Rendez-vous</span>
               </div>
             </div>
           </div>
@@ -131,7 +135,7 @@ if (isset($_SESSION['valid'])) {
           </div>
           <div class="box">
             <div class="right-side">
-              <div class="box-topic">Dans 3 jours</div>
+              <div class="box-topic">3 prochains jours</div>
               <div class="number"><?php echo $b; ?></div>
               <div class="indicator">
                 <span class="text">Rendez-vous</span>
@@ -140,7 +144,7 @@ if (isset($_SESSION['valid'])) {
           </div>
           <div class="box">
             <div class="right-side">
-              <div class="box-topic">Dans 1 semaine</div>
+              <div class="box-topic">7 prochains jours</div>
               <div class="number"><?php echo $c; ?></div>
               <div class="indicator">
                 <span class="text">Rendez-vous</span>
@@ -150,7 +154,7 @@ if (isset($_SESSION['valid'])) {
         </div>
         <div class="sales-boxes">
           <div class="recent-sales box">
-            <canvas id="myChart" width="400" height="250"></canvas>
+            <canvas id="myChart" width="600" height="350"></canvas>
             <script>
               const ctx = document.getElementById('myChart').getContext('2d');
               const myChart = new Chart(ctx, {
