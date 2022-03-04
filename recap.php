@@ -26,7 +26,6 @@ if (isset($_POST['submit'])) {
         } else {
             $ins = $bdd->prepare('INSERT INTO rendez_vous (nom, prenom, e_mail, adresse, telephone, services, date_rv, heure_rv) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
             $ins->execute(array($nom, $prenom, $e_mail, $adresse, $telephone, $services, $date_rv, $heure_rv));
-            echo 'Votre rendez-vous a été bien pris en compte';
         }
     } else {
         echo 'Veuillez remplir tous les champs !';
