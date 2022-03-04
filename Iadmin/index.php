@@ -24,6 +24,7 @@ if (isset($_SESSION['valid'])) {
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
 
@@ -75,17 +76,21 @@ if (isset($_SESSION['valid'])) {
         <div class="overview-boxes">
           <div class="box">
             <div class="right-side">
-              <div class="box-topic">Total</div>
+              <div class="box-topic">Total rendez-vous</div>
               <div class="number"><?php echo $nbligne['countid']; ?></div>
               <div class="indicator">
+<<<<<<< HEAD
                 <!-- <i class='bx bx-up-arrow-alt'></i> -->
                 <span class="text">Rendez_vous</span>
+=======
+>>>>>>> 186f1cd4ff26be3764370a6f00cb9d37b198e342
               </div>
             </div>
             <!-- <i class='bx bx-alt '></i> -->
           </div>
           <div class="box">
             <div class="right-side">
+<<<<<<< HEAD
               <div class="box-topic">Aujourd'hui</div>
               <div class="number"><?php echo $nbligne2['countid']; ?></div>
               <div class="indicator">
@@ -105,139 +110,91 @@ if (isset($_SESSION['valid'])) {
               </div>
             </div>
             <!-- <i class='bx bx-cart cart three'></i> -->
+=======
+              <div class="box-topic">Total hebdomadaire</div>
+              <div class="number"></div>
+              <div class="indicator">
+              </div>
+            </div>
           </div>
           <div class="box">
             <div class="right-side">
+              <div class="box-topic">Total Mensuel</div>
+              <div class="number"></div>
+              <div class="indicator">
+              </div>
+            </div>
+>>>>>>> 186f1cd4ff26be3764370a6f00cb9d37b198e342
+          </div>
+          <!-- <div class="box">
+            <div class="right-side">
+<<<<<<< HEAD
               <div class="box-topic">Dans 1 semaine</div>
+=======
+              <div class="box-topic">Total </div>
+>>>>>>> 186f1cd4ff26be3764370a6f00cb9d37b198e342
               <div class="number">11,086</div>
               <div class="indicator">
                 <!-- <i class='bx bx-down-arrow-alt down'></i> -->
                 <span class="text">Rendez-vous</span>
               </div>
             </div>
+<<<<<<< HEAD
             <!-- <i class='bx bxs-cart-download cart four'></i> -->
           </div>
+=======
+            <i class='bx bxs-cart-download cart four'></i>
+          </div> -->
+>>>>>>> 186f1cd4ff26be3764370a6f00cb9d37b198e342
         </div>
-
         <div class="sales-boxes">
           <div class="recent-sales box">
-            <div class="title">Recent Sales</div>
-            <div class="sales-details">
-              <ul class="details">
-                <li class="topic">Date</li>
-                <li><a href="#">02 Jan 2021</a></li>
-                <li><a href="#">02 Jan 2021</a></li>
-                <li><a href="#">02 Jan 2021</a></li>
-                <li><a href="#">02 Jan 2021</a></li>
-                <li><a href="#">02 Jan 2021</a></li>
-                <li><a href="#">02 Jan 2021</a></li>
-                <li><a href="#">02 Jan 2021</a></li>
-              </ul>
-              <ul class="details">
-                <li class="topic">Customer</li>
-                <li><a href="#">Alex Doe</a></li>
-                <li><a href="#">David Mart</a></li>
-                <li><a href="#">Roe Parter</a></li>
-                <li><a href="#">Diana Penty</a></li>
-                <li><a href="#">Martin Paw</a></li>
-                <li><a href="#">Doe Alex</a></li>
-                <li><a href="#">Aiana Lexa</a></li>
-                <li><a href="#">Rexel Mags</a></li>
-                <li><a href="#">Tiana Loths</a></li>
-              </ul>
-              <ul class="details">
-                <li class="topic">Sales</li>
-                <li><a href="#">Delivered</a></li>
-                <li><a href="#">Pending</a></li>
-                <li><a href="#">Returned</a></li>
-                <li><a href="#">Delivered</a></li>
-                <li><a href="#">Pending</a></li>
-                <li><a href="#">Returned</a></li>
-                <li><a href="#">Delivered</a></li>
-                <li><a href="#">Pending</a></li>
-                <li><a href="#">Delivered</a></li>
-              </ul>
-              <ul class="details">
-                <li class="topic">Total</li>
-                <li><a href="#">$204.98</a></li>
-                <li><a href="#">$24.55</a></li>
-                <li><a href="#">$25.88</a></li>
-                <li><a href="#">$170.66</a></li>
-                <li><a href="#">$56.56</a></li>
-                <li><a href="#">$44.95</a></li>
-                <li><a href="#">$67.33</a></li>
-                <li><a href="#">$23.53</a></li>
-                <li><a href="#">$46.52</a></li>
-              </ul>
-            </div>
-            <div class="button">
-              <a href="#">See All</a>
-            </div>
+          <canvas id="myChart" width="400" height="250"></canvas>
+          <script>
+            const ctx = document.getElementById('myChart').getContext('2d');
+            const myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['janvier', 'février', 'Mars', 'Avril', 'Mais', 'Juin'],
+                    datasets: [{
+                        data: [55, 70, 65, 50, 25, 45],
+                      
+                    }]
+                },
+                options: {
+                   
+                }
+            });
+          </script>
           </div>
           <div class="top-sales box">
-            <div class="title">Top Seling Product</div>
-            <ul class="top-sales-details">
-              <li>
-                <a href="#">
-                  <img src="images/sunglasses.jpg" alt="">
-                  <span class="product">Vuitton Sunglasses</span>
-                </a>
-                <span class="price">$1107</span>
-              </li>
-              <li>
-                <a href="#">
-                  <img src="images/jeans.jpg" alt="">
-                  <span class="product">Hourglass Jeans </span>
-                </a>
-                <span class="price">$1567</span>
-              </li>
-              <li>
-                <a href="#">
-                  <img src="images/nike.jpg" alt="">
-                  <span class="product">Nike Sport Shoe</span>
-                </a>
-                <span class="price">$1234</span>
-              </li>
-              <li>
-                <a href="#">
-                  <img src="images/scarves.jpg" alt="">
-                  <span class="product">Hermes Silk Scarves.</span>
-                </a>
-                <span class="price">$2312</span>
-              </li>
-              <li>
-                <a href="#">
-                  <img src="images/blueBag.jpg" alt="">
-                  <span class="product">Succi Ladies Bag</span>
-                </a>
-                <span class="price">$1456</span>
-              </li>
-              <li>
-                <a href="#">
-                  <img src="images/bag.jpg" alt="">
-                  <span class="product">Gucci Womens's Bags</span>
-                </a>
-                <span class="price">$2345</span>
-              <li>
-                <a href="#">
-                  <img src="images/addidas.jpg" alt="">
-                  <span class="product">Addidas Running Shoe</span>
-                </a>
-                <span class="price">$2345</span>
-              </li>
-              <li>
-                <a href="#">
-                  <img src="images/shirt.jpg" alt="">
-                  <span class="product">Bilack Wear's Shirt</span>
-                </a>
-                <span class="price">$1245</span>
-              </li>
-            </ul>
+          <canvas id="myChart1" width="150" height="200"></canvas>
+          <script>
+            var barColors = [
+              "#3e5580",
+              "rgba(0,0,255,0.8)",
+              "#0A2558",
+              "rgba(0,0,255,0.4)",
+            ];
+            const ctx1 = document.getElementById('myChart1').getContext('2d');
+            const myChart1 = new Chart(ctx1, {
+                type: 'pie',
+                data: {
+                    labels: ['janvier', 'février', 'Mars', 'Avril'],
+                    datasets: [{
+                       backgroundColor: barColors,
+                        data: [55, 70, 65, 50],
+                    }]
+                },
+                options: {
+                   
+                }
+            });
+          </script>
           </div>
         </div>
       </div>
     </section>
-
     <script>
       let sidebar = document.querySelector(".sidebar");
       let sidebarBtn = document.querySelector(".sidebarBtn");
@@ -249,9 +206,7 @@ if (isset($_SESSION['valid'])) {
           sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
       }
     </script>
-
   </body>
-
   </html>
 
 <?php
