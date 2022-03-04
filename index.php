@@ -1,3 +1,14 @@
+<?php
+$bdd = new PDO('mysql:host=localhost;dbname=rendez-vous;charset=utf8', 'root', '');
+$nom = "";
+$prenom = "";
+$e_mail = "";
+$adresse = "";
+$telephone = "";
+$services = "";
+$date_rv = "";
+$heure_rv = "";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
