@@ -1,38 +1,3 @@
-<?php
-$bdd = new PDO('mysql:host=localhost;dbname=rendez-vous;charset=utf8', 'root', '');
-$nom = "";
-$prenom = "";
-$e_mail = "";
-$adresse = "";
-$telephone = "";
-$services = "";
-$date_rv = "";
-$heure_rv = "";
-if (isset($_POST['submit'])) {
-    if (isset($_POST['submit'])) {
-        $nom = htmlspecialchars($_POST['nom']);
-        $prenom = htmlspecialchars($_POST['prenom']);
-        $e_mail = htmlspecialchars($_POST['e_mail']);
-        $adresse = htmlspecialchars($_POST['adresse']);
-        $telephone  = htmlspecialchars($_POST['telephone']);
-        $services = htmlspecialchars($_POST['services']);
-        $date_rv = htmlspecialchars($_POST['date_rv']);
-        $heure_rv = htmlspecialchars($_POST['heure_rv']);
-        if ($date_rv < date("Y-m-d")) {
-            echo "La date est dans le passé";
-        } elseif (intval(date_format(date_create($heure_rv), "H")) > 20 || intval(date_format(date_create($heure_rv), "H" < 8))) {
-            echo "Time is not available";
-        } else {
-            $ins = $bdd->prepare('INSERT INTO rendez_vous (nom, prenom, e_mail, adresse, telephone, services, date_rv, heure_rv) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
-            $ins->execute(array($nom, $prenom, $e_mail, $adresse, $telephone, $services, $date_rv, $heure_rv));
-            echo 'Votre rendez-vous a été bien pris en compte';
-        }
-    } else {
-        echo 'Veuillez remplir tous les champs !';
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
