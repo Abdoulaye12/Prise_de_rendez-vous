@@ -10,7 +10,6 @@ if (isset($_SESSION['valid'])) {
 ?>
   <!DOCTYPE html>
   <html lang="en">
-
   <head>
     <meta charset="UTF-8">
     <title> Responsive Admin Dashboard | CodingLab </title>
@@ -89,7 +88,7 @@ if (isset($_SESSION['valid'])) {
           </div>
           <div class="box">
             <div class="right-side">
-              <div class="box-topic">Total hebdomadaire</div>
+              <div class="box-topic">Total du jour</div>
               <div class="number"></div>
               <div class="indicator">
               </div>
@@ -117,7 +116,7 @@ if (isset($_SESSION['valid'])) {
         </div>
         <div class="sales-boxes">
           <div class="recent-sales box">
-          <canvas id="myChart" width="400" height="250"></canvas>
+          <canvas id="myChart" width="600" height="350"></canvas>
           <script>
             const ctx = document.getElementById('myChart').getContext('2d');
             const myChart = new Chart(ctx, {
