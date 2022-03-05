@@ -140,7 +140,6 @@
             </nav>
         </div>
     </header>
-    <section>
 
         <?php
 
@@ -193,16 +192,24 @@
                 $ins = $bdd->prepare('INSERT INTO rendez_vous (nom, prenom, e_mail, adresse, telephone, services, date_rv, heure_rv) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
                 $ins->execute(array($nom, $prenom, $e_mail, $adresse, $telephone, $services, $date_rv, $heure_rv));
                 require('recap.php');
-               ?>
-               <style>
-                   #notify, #notify2{
-                       display: none;
-                   }
-               </style>
-                <?php
+        ?>
+                <style>
+                    #notify,
+                    #notify2,
+                    #notify3 {
+                        display: none;
+                    }
+                </style>
+        <?php
             }
         }
         ?>
+        <section>
+        <section id="notify3">
+            <marquee height="55px" direction="left" class="mt-5 ">
+                <h3>Nous vous souhaitons la bienvenue sur notre site de prise de rendez-vous.</h3>
+            </marquee>
+        </section>
         <div id="notify" class="container-xl px-4 mt-4">
             <div class="row">
                 <div class="col-xl-7">
