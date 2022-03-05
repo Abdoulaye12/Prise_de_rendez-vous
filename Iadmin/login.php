@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
 			$_SESSION['e_mail'] = $row['e_mail'];
 			$_SESSION['id'] = $row['id'];
 		} else {
-			echo 'Email ou mot de passe incorrect';
+			echo '<h3 style ="text-align:center;color:white;margin:10px;margin-top:35px;">Email ou mot de passe incorrect</h3>';
 			include("login2.php");
 		}
 		if (isset($_SESSION['valid'])) {

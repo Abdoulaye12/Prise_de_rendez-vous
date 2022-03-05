@@ -1,41 +1,3 @@
-<?php
-
-$bdd = new PDO('mysql:host=localhost;dbname=rendez-vous;charset=utf8', 'root', '');
-$nom = "";
-$prenom = "";
-$e_mail = "";
-$adresse = "";
-$telephone = "";
-$services = "";
-$date_rv = "";
-$heure_rv = "";
-if (isset($_POST['submit'])) {
-    if (isset($_POST['submit'])) {
-        $nom = htmlspecialchars($_POST['nom']);
-        $prenom = htmlspecialchars($_POST['prenom']);
-        $e_mail = htmlspecialchars($_POST['e_mail']);
-        $adresse = htmlspecialchars($_POST['adresse']);
-        $telephone  = htmlspecialchars($_POST['telephone']);
-        $services = htmlspecialchars($_POST['services']);
-        $date_rv = htmlspecialchars($_POST['date_rv']);
-        $heure_rv = htmlspecialchars($_POST['heure_rv']);
-        if ($date_rv < date("Y-m-d")) {
-            echo "La date est dans le passé";
-        } elseif (intval(date_format(date_create($heure_rv), "H")) > 20 || intval(date_format(date_create($heure_rv), "H" < 8))) {
-            echo "Time is not available";
-        } else {
-            $ins = $bdd->prepare('INSERT INTO rendez_vous (nom, prenom, e_mail, adresse, telephone, services, date_rv, heure_rv) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
-            $ins->execute(array($nom, $prenom, $e_mail, $adresse, $telephone, $services, $date_rv, $heure_rv));
-        }
-    } else {
-        echo 'Veuillez remplir tous les champs !';
-    }
-}
-
-$rec = $bdd->query('SELECT * FROM rendez_vous');
-$recap = $rec->fetch();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -194,6 +156,18 @@ $recap = $rec->fetch();
     .d-flex {
       justify-content: center;
     }
+
+    .btn-outline-secondary1 {
+      margin: 20px 0px;
+      width: 270px;
+      display: block;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    button {
+      width: 130px;
+    }
   </style>
 </head>
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -212,15 +186,10 @@ $recap = $rec->fetch();
   <header class="header_section">
     <div class="container">
       <nav class="navbar navbar-expand-lg custom_nav-container ">
-      <a href="index.php"><p style="color: white;margin:5px">Prise de Rendez-vous</p></a>
-        <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class=""> </span>
-                  </button>
-                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  </div> -->
-        <!-- <div>
-                    <a href="Iadmin/index.php" type="submit" class="lien">AdminConnexion</a>
-                </div> -->
+        <a href="index.php">
+          <p style="color: white;margin:5px">Prise de Rendez-vous</p>
+          <a style="color:white;margin:0px 20px" href="index.php">Accueil</a>
+        </a>
       </nav>
     </div>
   </header>
@@ -271,36 +240,11 @@ $recap = $rec->fetch();
           </div>
         </div>
       </section>
-      <h6 style="text-align: center;">Envoyé par mail</h6>
-      <section>
-        <div class="sect2">
-          <p><?php echo $_POST['prenom'] . " " . $_POST['nom']; ?></p>
-          <p><?php echo $_POST['adresse'] ?></p>
-          <p><?php echo $_POST['telephone'] ?></p>
-          <p><?php echo $_POST['e_mail'] ?></p>
-          <br>
-          <?php
-          echo date("F j, Y") . " à Dakar" . "<br>";
-          ?>
-          <br>
-          <h5 style="font-weight: bold;">Objet : Confirmation de rendez-vous du <?php echo $_POST['date_rv'] ?> à <?php echo $_POST['heure_rv'] ?></h5>
-          <br>
-          Madame, Monsieur,
-          <br>
-          <br>
-          <p>je fais suite à notre conversation digitalisé au cour duquel nous avons convenu d'un
-            rendez-vous pour consultation <b><em>"<?php echo $_POST['services'] ?>"</em></b>
-            <br><br>
-            Par la présente, je confirme la date du rendez-vous prevu au Centre Hospitalier Universitaire De Fann a <?php echo $_POST['heure_rv'] ?>.<!-- [S/
-            c'est un rendez-vous pour une fierce personne, par exemple votre enfant, preciser le nom et prenom]-->
-            <br><br>
-            Pour rappel, notre rencontre aura pour objet [precisez la nature du rendezvous]. N'hesitez pas a me
-            communiquer les documents dont je dois me munir. <br><br>
-            Dans l'attente de vous voir, je vous prie de recevoir, Madame, Monsieur, mes salutations respectueuses. <br><br>
-            [Signature]
-          </p>
-        </div>
-      </section>
+      <h6 style="text-align: center;">Récupérer par </h6>
+      <span class="btn-outline-secondary1">
+        <span><button class="btn btn-outline-secondary" type="submit" name="submit">Mail</button></span>
+        <span><button class="btn btn-outline-secondary" type="submit" name="submit">Sms</button></span>
+      </span>
     </section>
   </section>
 </body>

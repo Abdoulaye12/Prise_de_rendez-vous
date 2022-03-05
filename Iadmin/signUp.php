@@ -112,8 +112,10 @@
     }
 
     .btn {
-      width: 30%;
-      margin-left: 25px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 50%;
       background: #198754;
       padding: 10px;
       border: 1px;
@@ -121,6 +123,10 @@
       font-size: 16px;
       border-radius: 5px;
       cursor: pointer;
+    }
+
+    .btn:hover{
+      opacity: 0.9  ;
     }
 
     .boutons {
@@ -151,7 +157,6 @@
       </div>
       <div class="boutons">
         <button class="btn" name="submit" type="submit">Valider</button>
-        <button class="btn1" type="reset">Retour</button>
       </div>
       <hr style="margin-top:15px;margin-bottom: 15px;">
       <a class="newcompte" href="login.php">Se connecter</a>
